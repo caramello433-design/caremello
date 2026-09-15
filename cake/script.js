@@ -1,4 +1,5 @@
 /* ── Caramello Cakestry — JavaScript ── */
+const API_BASE_URL = 'https://caremello-7.onrender.com';
 
 // ── Navbar scroll effect ──
 const navbar = document.getElementById('navbar');
@@ -33,7 +34,7 @@ async function handleOrder(e) {
   const button = e.target.querySelector('button[type="submit"]');
   button.disabled = true;
   try {
-    const response = await fetch('/api/orders', {
+    const response = await fetch(`${API_BASE_URL}/api/orders`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -799,7 +800,7 @@ const products = getLiveProducts();
 // Try to fetch authoritative data from backend and replace local copy
 (async function tryLoadFromServer() {
   try {
-    const res = await fetch('/api/products');
+    const res = await fetch(`${API_BASE_URL}/api/products`);
     if (!res.ok) return;
     const server = await res.json();
     if (!Array.isArray(server) || !server.length) return;

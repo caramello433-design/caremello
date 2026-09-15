@@ -4,6 +4,7 @@
 ═══════════════════════════════════════════════════════════ */
 
 'use strict';
+const API_BASE_URL = 'https://caremello-7.onrender.com';
 
 /* ── Admin Credentials (change here to update) ── */
 const ADMIN_CREDS = { username: 'admin', password: 'caramello2024' };
@@ -113,7 +114,7 @@ function saveProducts() {
 // Try to sync full product list to backend (best-effort)
 async function syncToServer(list) {
   try {
-    await fetch('/api/products/sync', {
+    await fetch(`${API_BASE_URL}/api/products/sync`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(list)
@@ -130,7 +131,7 @@ async function syncSingleProduct(item) {
   try {
     const id = item && item.id ? item.id : null;
     if (id) setSyncStatus(id, 'syncing');
-    const res = await fetch('/api/products/upsert', {
+    const res = await fetch(`${API_BASE_URL}/api/products/upsert`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(item)
@@ -151,7 +152,7 @@ async function syncSingleProduct(item) {
 async function deleteOnServer(id) {
   try {
     setSyncStatus(id, 'syncing');
-    const res = await fetch(`/api/products/${id}`, { method: 'DELETE' });
+    const res = await fetch(`${API_BASE_URL}/api/products/${id}`, { method: 'DELETE' });
     if (!res.ok) throw new Error('delete failed');
     setSyncStatus(id, 'ok');
   } catch (e) {
@@ -164,7 +165,7 @@ async function deleteOnServer(id) {
 async function patchProductOnServer(id, patch) {
   try {
     setSyncStatus(id, 'syncing');
-    const res = await fetch(`/api/products/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/products/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(patch)
@@ -342,7 +343,7 @@ function showSection(name) {
 
 async function loadOrders() {
   try {
-    const response = await fetch('/api/orders');
+    const response = await fetch(`${API_BASE_URL}/api/orders`);
     if (!response.ok) throw new Error('orders unavailable');
     orders = await response.json();
     document.getElementById('orderCount').textContent = orders.filter(order => order.status === 'new').length;
@@ -377,7 +378,7 @@ function renderOrders() {
 }
 
 async function updateOrderStatus(id, status) {
-  const response = await fetch(`/api/orders/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status }) });
+  const response = await fetch(`${API_BASE_URL}/api/orders/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status }) });
   if (!response.ok) { showToast('Could not update order.', 'error'); return; }
   const order = orders.find(item => item.id === id);
   if (order) order.status = status;
@@ -386,7 +387,7 @@ async function updateOrderStatus(id, status) {
 
 async function deleteOrder(id) {
   if (!window.confirm('Delete this customer order?')) return;
-  const response = await fetch(`/api/orders/${id}`, { method: 'DELETE' });
+  const response = await fetch(`${API_BASE_URL}/api/orders/${id}`, { method: 'DELETE' });
   if (!response.ok) { showToast('Could not delete order.', 'error'); return; }
   orders = orders.filter(order => order.id !== id);
   document.getElementById('orderCount').textContent = orders.filter(order => order.status === 'new').length;
@@ -656,7 +657,7 @@ async function saveProduct(e) {
   if (selectedFiles.length) {
     const uploadData = new FormData();
     selectedFiles.forEach(file => uploadData.append('images', file));
-    const uploadResponse = await fetch('/api/uploads', { method: 'POST', body: uploadData });
+    const uploadResponse = await fetch(`${API_BASE_URL}/api/uploads`, { method: 'POST', body: uploadData });
     if (!uploadResponse.ok) {
       showToast('Image upload failed. Please try again.', 'error');
       return;
