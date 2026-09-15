@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caramello Admin — Product Management</title>
+  <meta name="description" content="Caramello Cakestry admin panel for managing products, pricing and details." />
+  <link rel="icon" href="logo/caramello logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body>
+
+  <!-- ── LOGIN SCREEN ── -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-bg">
+      <div class="login-blob b1"></div>
+      <div class="login-blob b2"></div>
+      <div class="login-blob b3"></div>
+    </div>
+
+    <div class="login-card">
+      <div class="login-brand">
+        <img src="logo/caramello logo.png" alt="Caramello" class="login-logo" onerror="this.style.display='none'" />
+        <div class="login-brand-text">
+          <span class="login-brand-name">Caramello</span>
+          <span class="login-brand-sub">Admin Panel</span>
+        </div>
+      </div>
+
+      <div class="login-header">
+        <div class="lock-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+        </div>
+        <h1 class="login-title">Welcome Back</h1>
+        <p class="login-subtitle">Sign in to manage your products</p>
+      </div>
+
+      <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
+        <div class="field-group">
+          <label for="adminUser">Username</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <input type="text" id="adminUser" placeholder="Enter username" autocomplete="username" />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="adminPass">Password</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <input type="password" id="adminPass" placeholder="Enter password" autocomplete="current-password" />
+            <button type="button" class="eye-btn" id="eyeBtn" onclick="togglePass()">
+              <svg id="eyeOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg id="eyeClosed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                style="display:none">
+                <path
+                  d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                <line x1="1" y1="1" x2="23" y2="23" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="forgot-link-row">
+          <button type="button" class="forgot-link" id="forgotLink" onclick="showForgotPassword()">Forgot
+            password?</button>
+        </div>
+
+        <div id="loginError" class="login-error" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <span>Invalid credentials. Please try again.</span>
+        </div>
+
+        <button type="submit" class="login-btn" id="loginBtn">
+          <span class="btn-text">Sign In</span>
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+      </form>
+
+      <!-- ── FORGOT PASSWORD PANEL ── -->
+      <div class="forgot-panel" id="forgotPanel" aria-hidden="true">
+        <button class="forgot-back" id="forgotBack" onclick="hideForgotPassword()" aria-label="Back to login">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          Back to Login
+        </button>
+
+        <div class="forgot-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path
+              d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
+          </svg>
+        </div>
+
+        <h2 class="forgot-title">Reset Credentials</h2>
+        <p class="forgot-subtitle">This admin panel uses hardcoded credentials. Contact the developer to update them in
+          <code>admin.js</code>.
+        </p>
+
+        <div class="forgot-creds-box">
+          <div class="forgot-cred-row">
+            <span class="forgot-cred-label">Username</span>
+            <code class="forgot-cred-val" id="fpUsername">admin</code>
+          </div>
+          <div class="forgot-cred-divider"></div>
+          <div class="forgot-cred-row">
+            <span class="forgot-cred-label">Password</span>
+            <span class="forgot-cred-pass-wrap">
+              <code class="forgot-cred-val" id="fpPassword">••••••••••••</code>
+              <button type="button" class="forgot-reveal-btn" id="fpRevealBtn" onclick="toggleFPReveal()"
+                aria-label="Reveal password">
+                <svg id="fpEyeOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                <svg id="fpEyeClosed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="display:none">
+                  <path
+                    d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                  <line x1="1" y1="1" x2="23" y2="23" />
+                </svg>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <button type="button" class="forgot-use-btn" id="fpUseBtn" onclick="fillCredentials()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          Auto-fill &amp; Login
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ADMIN DASHBOARD ── -->
+  <div id="adminDashboard" class="admin-dashboard" style="display:none">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="logo/caramello logo.png" alt="Caramello" class="sidebar-logo" onerror="this.style.display='none'" />
+        <div class="sidebar-brand">
+          <span class="sb-name">Caramello</span>
+          <span class="sb-role">Admin</span>
+        </div>
+        <button class="sidebar-close" id="sidebarClose" onclick="toggleSidebar()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" id="navDashboard" onclick="showSection('dashboard')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item" id="navProducts" onclick="showSection('products')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <span>Products</span>
+          <span class="nav-badge" id="productCount">0</span>
+        </button>
+        <button class="nav-item" id="navOrders" onclick="showSection('orders')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2h12v20H6z" />
+            <path d="M9 6h6M9 10h6M9 14h4" />
+          </svg>
+          <span>Orders</span>
+          <span class="nav-badge" id="orderCount">0</span>
+        </button>
+        <button class="nav-item" id="navAdd" onclick="showSection('add')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="16" />
+            <line x1="8" y1="12" x2="16" y2="12" />
+          </svg>
+          <span>Add Product</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="admin-avatar">A</div>
+        <div class="admin-info">
+          <span class="admin-name">Admin User</span>
+          <span class="admin-status">● Online</span>
+        </div>
+        <button class="logout-btn" onclick="logout()" title="Logout">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-area">
+      <!-- Top Bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="menu-btn" onclick="toggleSidebar()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          <div class="breadcrumb">
+            <span id="breadcrumbText">Dashboard</span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <a href="index.html" target="_blank" class="view-site-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            View Site
+          </a>
+        </div>
+      </header>
+
+      <!-- ── DASHBOARD SECTION ── -->
+      <section id="sectionDashboard" class="content-section active-section">
+        <div class="section-intro">
+          <h2 class="section-title">Dashboard</h2>
+          <p class="section-sub">Overview of your Caramello product catalog</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon stat-blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+              </svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="statTotal">0</span>
+              <span class="stat-label">Total Products</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon stat-pink">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="statMustTry">0</span>
+              <span class="stat-label">Must Try</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon stat-brown">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <path
+                  d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32" />
+              </svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="statChoco">0</span>
+              <span class="stat-label">Chocolate</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon stat-green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="statCustom">0</span>
+              <span class="stat-label">Customized</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="category-overview">
+          <h3 class="overview-title">Products by Category</h3>
+          <div class="category-bars" id="categoryBars"></div>
+        </div>
+
+        <div class="recent-products">
+          <h3 class="overview-title">Recent Products</h3>
+          <div class="recent-table-wrap">
+            <table class="recent-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Categories</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="recentTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── PRODUCTS SECTION ── -->
+      <section id="sectionOrders" class="content-section">
+        <div class="section-intro order-section-heading">
+          <div>
+            <h2 class="section-title">Customer Orders</h2>
+            <p class="section-sub">Review enquiries submitted from the website</p>
+          </div>
+          <button class="add-product-btn" type="button" onclick="loadOrders()">Refresh Orders</button>
+        </div>
+        <div class="orders-list" id="ordersList">
+          <div class="orders-empty">Loading orders...</div>
+        </div>
+      </section>
+
+      <!-- ── PRODUCTS SECTION ── -->
+      <section id="sectionProducts" class="content-section">
+        <div class="section-intro">
+          <h2 class="section-title">All Products</h2>
+          <p class="section-sub">Manage and edit your product catalog</p>
+        </div>
+
+        <div class="products-toolbar">
+          <div class="search-wrap">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="text" id="productSearch" class="search-input" placeholder="Search products…"
+              oninput="filterProducts()" />
+          </div>
+          <div class="filter-wrap">
+            <select id="categoryFilter" class="filter-select" onchange="filterProducts()">
+              <option value="all">All Categories</option>
+              <option value="regular">Regular</option>
+              <option value="chocolate">Chocolate</option>
+              <option value="musttry">Must Try</option>
+              <option value="kids">Kids</option>
+              <option value="customized">Customized</option>
+              <option value="creamcheese">Cream Cheese</option>
+              <option value="nutdryfruit">Nut & Dry Fruit</option>
+            </select>
+          </div>
+          <button class="add-product-btn" onclick="showSection('add')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Add New
+          </button>
+        </div>
+
+        <div class="products-grid" id="productsGrid"></div>
+      </section>
+
+      <!-- ── ADD / EDIT SECTION ── -->
+      <section id="sectionAdd" class="content-section">
+        <div class="section-intro">
+          <h2 class="section-title" id="formTitle">Add New Product</h2>
+          <p class="section-sub" id="formSubtitle">Fill in the details below to add a new cake to your menu</p>
+        </div>
+
+        <div class="form-layout">
+          <form class="product-form" id="productForm" onsubmit="saveProduct(event)">
+            <!-- Basic Info -->
+            <div class="form-card">
+              <h3 class="form-card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                </svg>
+                Basic Information
+              </h3>
+
+              <input type="hidden" id="editId" value="" />
+
+              <div class="form-row">
+                <div class="field-group">
+                  <label for="pName">Product Name *</label>
+                  <input type="text" id="pName" placeholder="e.g. Chocolate Truffle Delight" required />
+                </div>
+              </div>
+
+              <div class="form-row two-col">
+                <div class="field-group">
+                  <label for="pPrice">Price *</label>
+                  <input type="text" id="pPrice" placeholder="e.g. ₹900 or Price on request" required />
+                </div>
+                <div class="field-group">
+                  <label for="pOriginalPrice">Original Price <span class="optional">(optional)</span></label>
+                  <input type="text" id="pOriginalPrice" placeholder="e.g. ₹1,000" />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="pDescription">Description *</label>
+                <textarea id="pDescription" rows="4" placeholder="Describe the cake — ingredients, taste, occasion…"
+                  required></textarea>
+              </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="form-card">
+              <h3 class="form-card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" />
+                </svg>
+                Categories
+              </h3>
+              <p class="form-hint">Select all categories that apply to this product</p>
+              <div class="category-checkboxes">
+                <label class="cat-check"><input type="checkbox" value="regular" /><span>Regular</span></label>
+                <label class="cat-check"><input type="checkbox" value="chocolate" /><span>Chocolate</span></label>
+                <label class="cat-check"><input type="checkbox" value="musttry" /><span>Must Try</span></label>
+                <label class="cat-check"><input type="checkbox" value="kids" /><span>Kids</span></label>
+                <label class="cat-check"><input type="checkbox" value="customized" /><span>Customized</span></label>
+                <label class="cat-check"><input type="checkbox" value="creamcheese" /><span>Cream Cheese</span></label>
+                <label class="cat-check"><input type="checkbox" value="nutdryfruit" /><span>Nut & Dry
+                    Fruit</span></label>
+              </div>
+            </div>
+
+            <!-- Images -->
+            <div class="form-card">
+              <h3 class="form-card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                Product Images
+              </h3>
+
+              <div class="field-group">
+                <label for="pImageFiles">Upload Product Images *</label>
+                <input type="file" id="pImageFiles" accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
+                  multiple required />
+                <p class="form-hint">Choose up to 12 images. The first image is used as the main image.</p>
+                <div class="image-upload-preview" id="imageUploadPreview"></div>
+              </div>
+
+              <div class="field-group">
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="form-actions">
+              <button type="button" class="btn-cancel" onclick="cancelEdit()">Cancel</button>
+              <button type="submit" class="btn-save" id="saveBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                  <polyline points="17 21 17 13 7 13 7 21" />
+                  <polyline points="7 3 7 8 15 8" />
+                </svg>
+                <span id="saveBtnText">Save Product</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Live Preview -->
+          <div class="form-preview">
+            <h3 class="preview-title">Live Preview</h3>
+            <div class="preview-card" id="previewCard">
+              <div class="preview-img-wrap">
+                <img id="previewImg" src="" alt="" onerror="this.src=''" />
+                <div class="preview-placeholder" id="previewPlaceholder">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" />
+                  </svg>
+                  <span>Image preview</span>
+                </div>
+              </div>
+              <div class="preview-body">
+                <div class="preview-cats" id="previewCats"></div>
+                <h4 class="preview-name" id="previewName">Product Name</h4>
+                <p class="preview-desc" id="previewDesc">Product description will appear here…</p>
+                <div class="preview-pricing">
+                  <span class="preview-price" id="previewPrice">₹0</span>
+                  <span class="preview-orig" id="previewOrig" style="display:none"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ── DELETE CONFIRM MODAL ── -->
+  <div class="modal-overlay" id="deleteModal" style="display:none" onclick="closeDeleteModal(event)">
+    <div class="modal-card">
+      <div class="modal-icon danger">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6" />
+          <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+          <path d="M10 11v6M14 11v6" />
+          <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+        </svg>
+      </div>
+      <h3 class="modal-title">Delete Product?</h3>
+      <p class="modal-msg" id="deleteModalMsg">Are you sure you want to delete this product? This action cannot be
+        undone.</p>
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" onclick="closeDeleteModal()">Cancel</button>
+        <button class="btn-modal-delete" id="confirmDeleteBtn" onclick="confirmDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TOAST ── -->
+  <div class="admin-toast" id="adminToast"></div>
+
+  <script src="admin.js"></script>
+</body>
+
+</html>

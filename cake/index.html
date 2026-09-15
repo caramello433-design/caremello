@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caramello Cakestry – Sweetness in Every Bite</title>
+  <meta name="description" content="Caramello Cakestry – handcrafted premium cakes, pastries and desserts. Sweetness in every bite. Order your dream cake today!" />
+  <meta name="theme-color" content="#0d1240" />
+  <link rel="icon" href="logo/caramello logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">
+        <img src="logo/caramello logo.png" alt="Caramello Bakery" class="logo-img" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#specials">Specials</a></li>
+        <li><a href="#occasions">Occasions</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="order-btn nav-order" onclick="scrollToMenu()">Order Now</button>
+      <a href="admin.html" class="admin-nav-link" title="Admin Panel" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);transition:all 0.2s;flex-shrink:0;" onmouseover="this.style.background='rgba(245,184,65,0.15)';this.style.color='#f5b841';this.style.borderColor='rgba(245,184,65,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.1)'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="home" class="hero">
+
+    <!-- Graphic background elements (pure CSS/SVG) -->
+    <div class="hero-graphic">
+      <!-- Tiling cake-icon pattern (outline style, like reference image) -->
+      <div class="cake-pattern-layer"></div>
+      <!-- Glowing rings -->
+      <div class="ring ring-1"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-3"></div>
+      <!-- Decorative blobs -->
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <!-- Arc / crescent shape -->
+      <svg class="hero-arc" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="300" cy="300" r="240" fill="none" stroke="rgba(255,184,0,0.10)" stroke-width="50"/>
+        <circle cx="300" cy="300" r="170" fill="none" stroke="rgba(255,184,0,0.06)" stroke-width="25"/>
+      </svg>
+    </div>
+
+    <!-- Content (centered) -->
+    <div class="hero-content">
+      <p class="hero-eyebrow"><span class="eyebrow-line"></span> Welcome to <span class="eyebrow-line"></span></p>
+      <h1 class="hero-title">
+        <img src="logo/caramello logo.png" alt="Caramello Cakestry" class="hero-logo-img" />
+      </h1>
+      <p class="hero-tagline">Sweetness in Every Bite</p>
+      <p class="hero-desc">Handcrafted premium cakes, pastries &amp; desserts made with love.<br/>From classic flavours to artistic masterpieces — your celebration starts here.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="scrollToMenu()">Explore Menu</button>
+        <button class="btn-ghost" onclick="document.getElementById('occasions').scrollIntoView({behavior:'smooth'})">Custom Orders</button>
+      </div>
+      <div class="hero-badges">
+        <div class="badge">
+          <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>8:30 AM – 12:00 AM</span>
+        </div>
+        <div class="badge">
+          <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M12 14v3M9 17h6"/></svg>
+          <span>Midnight Delivery</span>
+        </div>
+        <div class="badge">
+          <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Custom Designs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MARQUEE ── -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span class="mq-item"><img src="images/cat_regular.png" class="mq-img" alt=""/>Regular Cakes</span><span class="mq-sep">◆</span>
+      <span class="mq-item"><img src="images/cat_choco.png" class="mq-img" alt=""/>Choco Bites</span><span class="mq-sep">◆</span>
+      <span class="mq-item"><img src="images/cat_fruit.png" class="mq-img" alt=""/>Fruit Blast</span><span class="mq-sep">◆</span>
+      <span class="mq-item"><img src="images/cat_truffle.png" class="mq-img" alt=""/>Truffle Pop</span><span class="mq-sep">◆</span>
+      <span class="mq-item"><img src="images/cat_masterpiece.png" class="mq-img" alt=""/>Masterpiece</span><span class="mq-sep">◆</span>
+      <span class="mq-item"><img src="images/cat_kids.png" class="mq-img" alt=""/>Kids Choice</span><span class="mq-sep">◆</span>
+      <span class="mq-item"><img src="images/cat_specials.png" class="mq-img" alt=""/>French Pastries</span><span class="mq-sep">◆</span>
+      <span class="mq-item"><img src="images/cat_musttry.png" class="mq-img" alt=""/>Must Try</span><span class="mq-sep">◆</span>
+      <span class="mq-item"><img src="images/cat_regular.png" class="mq-img" alt=""/>Regular Cakes</span><span class="mq-sep">◆</span>
+      <span class="mq-item"><img src="images/cat_choco.png" class="mq-img" alt=""/>Choco Bites</span><span class="mq-sep">◆</span>
+      <span class="mq-item"><img src="images/cat_fruit.png" class="mq-img" alt=""/>Fruit Blast</span><span class="mq-sep">◆</span>
+      <span class="mq-item"><img src="images/cat_truffle.png" class="mq-img" alt=""/>Truffle Pop</span><span class="mq-sep">◆</span>
+      <span class="mq-item"><img src="images/cat_masterpiece.png" class="mq-img" alt=""/>Masterpiece</span><span class="mq-sep">◆</span>
+      <span class="mq-item"><img src="images/cat_kids.png" class="mq-img" alt=""/>Kids Choice</span><span class="mq-sep">◆</span>
+      <span class="mq-item"><img src="images/cat_specials.png" class="mq-img" alt=""/>French Pastries</span><span class="mq-sep">◆</span>
+      <span>🧁 Cupcakes &amp; Treats</span><span>✦</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MENU SECTION  – Organised by category
+       ══════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════
+       MENU SECTION  – Organised by category
+       ══════════════════════════════════════ -->
+  <section id="menu" class="section menu-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Our Menu</p>
+        <h2 class="section-title">Redesigned with <span class="highlight">Love</span></h2>
+        <p class="section-sub">Sweetness handcrafted for your special moments</p>
+      </div>
+
+      <!-- Controls Wrapper (Sticky Nav & Search Bar) -->
+      <div class="menu-controls">
+        <div class="menu-search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="menu-search" placeholder="Search cakes by name..." aria-label="Search products" />
+          <button class="search-clear-btn" id="searchClearBtn" aria-label="Clear search">✕</button>
+        </div>
+        <span class="search-results-count" id="searchResultsCount"></span>
+        <div class="menu-nav-wrapper">
+          <div id="menu-pills-nav" class="menu-pills-nav">
+            <!-- Pills generated dynamically by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Dynamically generated sections will go here -->
+      <div id="menu-sections-container"></div>
+
+    </div>
+
+    <!-- Dynamic Modal for Product Details & Gallery -->
+    <div id="product-gallery-modal" class="product-modal" aria-hidden="true" role="dialog">
+      <div class="product-modal-backdrop"></div>
+      <div class="product-modal-content">
+        <button class="product-modal-close" aria-label="Close modal">&times;</button>
+        <div class="product-modal-body">
+          <div class="product-modal-gallery">
+            <div class="product-modal-main-image-wrap">
+              <button class="product-modal-arrow arrow-left" aria-label="Previous image">&#10094;</button>
+              <img id="product-modal-main-img" src="" alt="Cake preview" />
+              <button class="product-modal-arrow arrow-right" aria-label="Next image">&#10095;</button>
+            </div>
+            <div id="product-modal-thumbs" class="product-modal-thumbs">
+              <!-- Thumbnail strip generated dynamically -->
+            </div>
+          </div>
+          <div class="product-modal-info">
+            <h2 id="product-modal-title"></h2>
+            <p id="product-modal-desc"></p>
+            <div class="product-modal-price-wrap">
+              <span id="product-modal-price" class="product-modal-price-active"></span>
+              <span id="product-modal-original-price" class="product-modal-price-original"></span>
+            </div>
+            <button id="product-modal-order-btn" class="btn-primary product-modal-order-btn">Order Now</button>
+            <a id="product-modal-wa-btn" class="btn-wa-modal" href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.789.474 3.469 1.303 4.922L2 22l5.233-1.278A9.955 9.955 0 0011.999 22C17.522 22 22 17.523 22 12S17.522 2 11.999 2zm0 18a7.951 7.951 0 01-4.271-1.244l-.306-.182-3.107.759.784-2.995-.2-.315A7.958 7.958 0 014 12c0-4.411 3.589-8 7.999-8C16.41 4 20 7.589 20 12s-3.589 8-8.001 8z"/></svg>
+              Order on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SPECIALS ── -->
+  <section id="specials" class="section specials-section">
+    <!-- Specials photo banner -->
+    <div class="specials-photo-banner">
+      <img src="images/cat_specials.png" alt="Bakery Specials" class="specials-banner-img"/>
+      <div class="specials-banner-overlay">
+        <p class="section-eyebrow">Also Available</p>
+        <h2 class="section-title">More <span class="highlight">Delights</span></h2>
+        <p class="section-sub">Beyond cakes – a world of sweetness awaits</p>
+      </div>
+    </div>
+    <div class="container">
+
+      <!-- Category pills -->
+      <div class="specials-pills">
+        <div class="cat-pill">Rich Plum Cakes</div>
+        <div class="cat-pill">French Pastries</div>
+        <div class="cat-pill">Eggless Cakes</div>
+        <div class="cat-pill">Baked Cheese Cakes</div>
+        <div class="cat-pill">Cold Cheese Cakes</div>
+        <div class="cat-pill">Cookies</div>
+        <div class="cat-pill">Caramello Treats</div>
+        <div class="cat-pill">Dessert</div>
+        <div class="cat-pill">Dry Cakes</div>
+      </div>
+
+      <!-- Specials two-column list -->
+      <div class="specials-two-col">
+        <div class="specials-col">
+          <h4 class="specials-col-title">Bakery Items</h4>
+          <ul class="specials-list">
+            <li>Milk Cake</li>
+            <li>French Custard Milk Cake</li>
+            <li>Tart</li>
+            <li class="caramello-item">✦ Matilda Cake</li>
+            <li class="caramello-item">✦ Tiramisu Truffles</li>
+            <li>Dates &amp; Carrot</li>
+          </ul>
+        </div>
+        <div class="specials-col">
+          <h4 class="specials-col-title">Seasonal Cakes</h4>
+          <ul class="specials-list">
+            <li>Banana Cake</li>
+            <li>Pineapple Cake</li>
+            <li>Apple Cake</li>
+            <li>Ghee Cake</li>
+            <li>Signature Mavo</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Small bites grid -->
+      <h3 class="sub-heading">Small Bites &amp; Treats</h3>
+      <div class="bites-row">
+        <div class="bite-card"><div class="bite-icon">🍩</div><span>Donut</span></div>
+        <div class="bite-card"><div class="bite-icon">🧁</div><span>Muffins</span></div>
+        <div class="bite-card"><div class="bite-icon">🍦</div><span>Barsicles</span></div>
+        <div class="bite-card"><div class="bite-icon">🧊</div><span>Popsicle</span></div>
+        <div class="bite-card"><div class="bite-icon">🍬</div><span>Bomboloni</span></div>
+        <div class="bite-card"><div class="bite-icon">🎂</div><span>Mini Cakes</span></div>
+        <div class="bite-card"><div class="bite-icon">🍱</div><span>Bento Cakes</span></div>
+        <div class="bite-card"><div class="bite-icon">🫙</div><span>Jar Cakes</span></div>
+        <div class="bite-card"><div class="bite-icon">✨</div><span>Dream Cakes</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── OCCASIONS ── -->
+  <section id="occasions" class="section occasions-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Custom Orders</p>
+        <h2 class="section-title">For Every <span class="highlight">Occasion</span></h2>
+        <p class="section-sub">We craft the perfect cake for your special moments</p>
+      </div>
+      <div class="occasions-grid">
+        <div class="occasion-card">
+          <div class="oc-photo"><img src="images/occ_birthday.png" alt="Birthday Cakes"/></div>
+          <h3>Birthday Cakes</h3><p>Make every birthday magical with a personalised creation</p>
+        </div>
+        <div class="occasion-card">
+          <div class="oc-photo"><img src="images/occ_wedding.png" alt="Wedding Cakes"/></div>
+          <h3>Wedding Cakes</h3><p>Elegant, tiered masterpieces for your perfect day</p>
+        </div>
+        <div class="occasion-card">
+          <div class="oc-photo"><img src="images/occ_corporate.png" alt="Corporate"/></div>
+          <h3>Corporate Branding</h3><p>Custom branded cakes for corporate events and launches</p>
+        </div>
+        <div class="occasion-card">
+          <div class="oc-photo"><img src="images/occ_festive.png" alt="Festive"/></div>
+          <h3>Special Festive</h3><p>Celebrate every festival with themed cake creations</p>
+        </div>
+        <div class="occasion-card">
+          <div class="oc-photo"><img src="images/occ_custom.png" alt="Custom Design"/></div>
+          <h3>Customized Design</h3><p>Your imagination, our craft — any design, any theme</p>
+        </div>
+      </div>
+      <!-- Midnight banner -->
+      <div class="midnight-banner">
+        <img src="images/midnight.png" alt="Midnight Delivery" class="midnight-bg-img"/>
+        <div class="midnight-content">
+          <div class="midnight-text-block">
+            <p class="midnight-eyebrow">Special Service</p>
+            <h3>Midnight Birthday Moment Experience</h3>
+            <p>Surprise your loved ones at the stroke of midnight — we deliver the magic!</p>
+          </div>
+          <button class="btn-primary" onclick="scrollToContact()">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROMO / CELEBRATE EVERY DAY ── -->
+  <section class="promo-section">
+    <div class="container">
+      <div class="promo-grid">
+
+        <!-- Left: Celebrate banner -->
+        <div class="promo-celebrate">
+          <div class="promo-title-wrap">
+            <p class="promo-celebrate-top">CELEBRATE</p>
+            <p class="promo-celebrate-script">Every</p>
+            <p class="promo-celebrate-day">DAY</p>
+          </div>
+          <div class="promo-free-badge">
+            <span class="free-label">FREE</span>
+          </div>
+          <p class="promo-offer-text">
+            BIRTHDAY CELEBRATION<br/>
+            AT OUR <span class="accent-accadio">ACCADIO CAFE</span>
+          </p>
+          <p class="promo-subtext">Just fill the form and celebrate your special day with us!</p>
+          <a href="#contact" class="btn-primary promo-cta">Fill the Form &rarr;</a>
+        </div>
+
+        <!-- Right: Delivery + Order CTA -->
+        <div class="promo-delivery">
+          <div class="delivery-box">
+            <svg class="delivery-svg-icon" viewBox="0 0 48 48" fill="none" stroke="#FFB800" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 32h26V16H5z"/><path d="M31 20h6l5 8v4h-11V20z"/><circle cx="12" cy="38" r="4"/><circle cx="38" cy="38" r="4"/><path d="M16 38h18"/><path d="M5 24h26"/></svg>
+            <div>
+              <p class="delivery-label">DELIVERY AVAILABLE</p>
+              <a href="tel:8089798979" class="delivery-number">80 89 79 89 79</a>
+            </div>
+          </div>
+          <a href="#contact" class="order-now-btn">ORDER NOW!</a>
+          <p class="promo-website">www.caramellocakes.com</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BRANCHES ── -->
+  <section class="branches-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Find Us</p>
+        <h2 class="section-title">Our <span class="highlight">Branches</span></h2>
+        <p class="section-sub">Visit us at any of our locations</p>
+      </div>
+      <div class="branches-grid">
+
+        <div class="branch-card" id="branch-lavanya">
+          <div class="branch-icon lavanya-shape">
+            <svg viewBox="0 0 40 40" fill="none"><rect x="4" y="18" width="32" height="14" rx="3" stroke="#60efff" stroke-width="1.8"/><rect x="10" y="10" width="20" height="10" rx="2" stroke="#60efff" stroke-width="1.6"/><circle cx="14" cy="25" r="2" fill="#60efff"/><circle cx="20" cy="25" r="2" fill="#60efff"/><circle cx="26" cy="25" r="2" fill="#60efff"/></svg>
+          </div>
+          <div class="branch-brand-name lavanya-brand">Lavanya</div>
+          <p class="branch-tagline">Bakery &nbsp;|&nbsp; Fruits &nbsp;|&nbsp; Coolbar</p>
+          <div class="branch-divider"></div>
+          <p class="branch-location">
+            <svg class="pin-icon" viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 1C5.24 1 3 3.24 3 6c0 4 5 13 5 13s5-9 5-13c0-2.76-2.24-5-5-5z"/><circle cx="8" cy="6" r="2"/></svg>
+            Ambalappuzha
+          </p>
+          <a href="tel:8089883273" class="branch-phone">80 89 88 32 73</a>
+        </div>
+
+        <div class="branch-card" id="branch-caramello-1">
+          <div class="branch-icon caramello-shape">
+            <svg viewBox="0 0 40 40" fill="none"><rect x="4" y="22" width="32" height="12" rx="3" stroke="#FFB800" stroke-width="1.8"/><rect x="9" y="14" width="22" height="10" rx="2" stroke="#FFB800" stroke-width="1.6"/><rect x="14" y="8" width="12" height="8" rx="2" stroke="#FFB800" stroke-width="1.5"/><path d="M17 8 C17 5 20 3 20 3 C20 3 23 5 23 8" stroke="#FFB800" stroke-width="1.4"/></svg>
+          </div>
+          <div class="branch-brand-name caramello-brand">
+            <img src="logo/caramello logo.png" alt="Caramello Cakestry" class="branch-logo-img" />
+          </div>
+          <div class="branch-divider"></div>
+          <p class="branch-location">
+            <svg class="pin-icon" viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 1C5.24 1 3 3.24 3 6c0 4 5 13 5 13s5-9 5-13c0-2.76-2.24-5-5-5z"/><circle cx="8" cy="6" r="2"/></svg>
+            Valanjavazhi
+          </p>
+          <a href="tel:9169698979" class="branch-phone">91 69 69 89 79</a>
+        </div>
+
+        <div class="branch-card" id="branch-accadio">
+          <div class="branch-icon accadio-shape">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M10 32 C10 20 30 20 30 32" stroke="#a78bfa" stroke-width="1.8"/><rect x="12" y="30" width="16" height="4" rx="1" stroke="#a78bfa" stroke-width="1.6"/><path d="M16 20 C14 16 14 10 20 10 C26 10 26 16 24 20" stroke="#a78bfa" stroke-width="1.5"/><path d="M20 10 L20 7 M17 8 L15 6 M23 8 L25 6" stroke="#a78bfa" stroke-width="1.3"/></svg>
+          </div>
+          <div class="branch-brand-name accadio-brand">Accadio</div>
+          <p class="branch-tagline">Cafe &nbsp;|&nbsp; Bistro &nbsp;|&nbsp; Diners</p>
+          <div class="branch-divider"></div>
+          <p class="branch-location">
+            <svg class="pin-icon" viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 1C5.24 1 3 3.24 3 6c0 4 5 13 5 13s5-9 5-13c0-2.76-2.24-5-5-5z"/><circle cx="8" cy="6" r="2"/></svg>
+            Neerkunnam TDMC
+          </p>
+          <a href="tel:7909790959" class="branch-phone">79 09 79 09 59</a>
+        </div>
+
+        <div class="branch-card" id="branch-caramello-2">
+          <div class="branch-icon caramello-shape">
+            <svg viewBox="0 0 40 40" fill="none"><rect x="4" y="22" width="32" height="12" rx="3" stroke="#FFB800" stroke-width="1.8"/><rect x="9" y="14" width="22" height="10" rx="2" stroke="#FFB800" stroke-width="1.6"/><rect x="14" y="8" width="12" height="8" rx="2" stroke="#FFB800" stroke-width="1.5"/><path d="M17 8 C17 5 20 3 20 3 C20 3 23 5 23 8" stroke="#FFB800" stroke-width="1.4"/></svg>
+          </div>
+          <div class="branch-brand-name caramello-brand">
+            <img src="logo/caramello logo.png" alt="Caramello Cakestry" class="branch-logo-img" />
+          </div>
+          <div class="branch-divider"></div>
+          <p class="branch-location">
+            <svg class="pin-icon" viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 1C5.24 1 3 3.24 3 6c0 4 5 13 5 13s5-9 5-13c0-2.76-2.24-5-5-5z"/><circle cx="8" cy="6" r="2"/></svg>
+            Neerkunnam
+          </p>
+          <a href="tel:8089798979" class="branch-phone">80 89 79 89 79</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CUSTOMER REVIEWS ── -->
+  <section id="reviews" class="section reviews-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">What Our Customers Say</p>
+        <h2 class="section-title">Loved by <span class="highlight">Thousands</span></h2>
+        <p class="section-sub">Real stories from our happy customers &mdash; straight from their hearts</p>
+      </div>
+
+      <!-- Stars summary bar -->
+      <div class="reviews-summary">
+        <div class="reviews-avg">
+          <span class="avg-score">4.9</span>
+          <div class="avg-stars">
+            <span class="star filled">&#9733;</span><span class="star filled">&#9733;</span><span class="star filled">&#9733;</span><span class="star filled">&#9733;</span><span class="star half">&#9733;</span>
+          </div>
+          <span class="avg-label">Based on 500+ reviews</span>
+        </div>
+        <div class="reviews-bar-group">
+          <div class="bar-row"><span>5&#9733;</span><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><span>82%</span></div>
+          <div class="bar-row"><span>4&#9733;</span><div class="bar-track"><div class="bar-fill" style="width:12%"></div></div><span>12%</span></div>
+          <div class="bar-row"><span>3&#9733;</span><div class="bar-track"><div class="bar-fill" style="width:4%"></div></div><span>4%</span></div>
+          <div class="bar-row"><span>2&#9733;</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span>1%</span></div>
+          <div class="bar-row"><span>1&#9733;</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span>1%</span></div>
+        </div>
+      </div>
+
+      <!-- One-at-a-time Review Slider -->
+      <div class="rev-slider-wrap">
+        <button class="rev-arrow rev-prev" id="revPrev" aria-label="Previous review">&#8592;</button>
+        <div class="rev-slider" id="revSlider">
+
+          <div class="review-card active" data-index="0">
+            <div class="review-quote-icon">&#10077;</div>
+            <p class="review-text">Ordered the Belgium Chocolate cake for my daughter's birthday last week. Honestly wasn't expecting much but it completely blew us away. The cake was moist, rich and the ganache was just perfect. Everyone at the party kept asking which bakery it was from. Already planning to order the Red Velvet next month!</p>
+            <div class="review-bottom">
+              <div class="reviewer-avatar" style="background: linear-gradient(135deg,#FFB800,#e07800);">P</div>
+              <div class="reviewer-info">
+                <strong>Priya Menon</strong>
+                <span class="reviewer-loc">&#128205; Ambalappuzha &nbsp;&middot;&nbsp; June 2025</span>
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+              <span class="review-badge">Verified Purchase</span>
+            </div>
+          </div>
+
+          <div class="review-card" data-index="1">
+            <div class="review-quote-icon">&#10077;</div>
+            <p class="review-text">Me and my wife celebrated our anniversary with a Red Velvet Masterpiece. The cake reached on time, looked exactly like the photo on the menu. What surprised us most was the taste &mdash; cream cheese frosting was fresh and not overly sweet. Wife was so happy she teared up! This is our go-to bakery now.</p>
+            <div class="review-bottom">
+              <div class="reviewer-avatar" style="background: linear-gradient(135deg,#a78bfa,#5b21b6);">R</div>
+              <div class="reviewer-info">
+                <strong>Rahul Krishnan</strong>
+                <span class="reviewer-loc">&#128205; Neerkunnam &nbsp;&middot;&nbsp; May 2025</span>
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+              <span class="review-badge">Verified Purchase</span>
+            </div>
+          </div>
+
+          <div class="review-card" data-index="2">
+            <div class="review-quote-icon">&#10077;</div>
+            <p class="review-text">Tried the Pistachio Malai from Must Try after seeing it recommended. Took one bite and immediately called my sister to order one for herself. The flavour is subtle, not overly sweet &mdash; real pistachio taste with a creamy texture. Packaging was neat and delivery was quick. Absolute 10 out of 10.</p>
+            <div class="review-bottom">
+              <div class="reviewer-avatar" style="background: linear-gradient(135deg,#34d399,#047857);">S</div>
+              <div class="reviewer-info">
+                <strong>Sreelakshmi A.</strong>
+                <span class="reviewer-loc">&#128205; Valanjavazhi &nbsp;&middot;&nbsp; May 2025</span>
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+              <span class="review-badge">Verified Purchase</span>
+            </div>
+          </div>
+
+          <div class="review-card" data-index="3">
+            <div class="review-quote-icon">&#10077;</div>
+            <p class="review-text">Got the KitKat with Gems cake for my son's 5th birthday. He literally screamed when he saw it! The design was perfect and it tasted amazing too &mdash; not just a pretty cake. Even the adults finished their pieces before the kids did. Delivery came on time despite ordering the same day. Very impressed!</p>
+            <div class="review-bottom">
+              <div class="reviewer-avatar" style="background: linear-gradient(135deg,#f87171,#b91c1c);">A</div>
+              <div class="reviewer-info">
+                <strong>Anu Thomas</strong>
+                <span class="reviewer-loc">&#128205; Alappuzha &nbsp;&middot;&nbsp; April 2025</span>
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+              <span class="review-badge">Verified Purchase</span>
+            </div>
+          </div>
+
+          <div class="review-card" data-index="4">
+            <div class="review-quote-icon">&#10077;</div>
+            <p class="review-text">We ordered a branded cake for our company product launch event. Gave them our logo and colour scheme &mdash; the result was beyond expectations. Clean finish, professional look, tasted amazing too. Our colleagues genuinely thought it came from a premium hotel. Will be contacting Caramello for all future corporate events.</p>
+            <div class="review-bottom">
+              <div class="reviewer-avatar" style="background: linear-gradient(135deg,#38bdf8,#0369a1);">M</div>
+              <div class="reviewer-info">
+                <strong>Mohammed Siddique</strong>
+                <span class="reviewer-loc">&#128205; Ambalappuzha &nbsp;&middot;&nbsp; March 2025</span>
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+              <span class="review-badge">Corporate Order</span>
+            </div>
+          </div>
+
+          <div class="review-card" data-index="5">
+            <div class="review-quote-icon">&#10077;</div>
+            <p class="review-text">Visited Accadio Cafe with a few friends and tried the Tiramisu Truffles. I am not even a big dessert person usually, but these were absolutely irresistible &mdash; light, coffee-flavoured, melts in your mouth. The cafe has a great atmosphere too. We are already planning to go back again this weekend!</p>
+            <div class="review-bottom">
+              <div class="reviewer-avatar" style="background: linear-gradient(135deg,#fbbf24,#b45309);">D</div>
+              <div class="reviewer-info">
+                <strong>Divya Nair</strong>
+                <span class="reviewer-loc">&#128205; Neerkunnam &nbsp;&middot;&nbsp; June 2025</span>
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+              <span class="review-badge">Verified Purchase</span>
+            </div>
+          </div>
+
+          <div class="review-card" data-index="6">
+            <div class="review-quote-icon">&#10077;</div>
+            <p class="review-text">Just walked into the Valanjavazhi branch on a whim and asked for their best cake. They recommended the Golden Honey from Must Try. One slice and I was completely sold. Picked up a full 1kg box on the way back home. My whole family finished it within two sittings. Worth every rupee, not a single complaint.</p>
+            <div class="review-bottom">
+              <div class="reviewer-avatar" style="background: linear-gradient(135deg,#c084fc,#7c3aed);">J</div>
+              <div class="reviewer-info">
+                <strong>Jibin George</strong>
+                <span class="reviewer-loc">&#128205; Valanjavazhi &nbsp;&middot;&nbsp; June 2025</span>
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+              <span class="review-badge">Walk-in Customer</span>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="rev-arrow rev-next" id="revNext" aria-label="Next review">&#8594;</button>
+      </div>
+
+      <!-- Dots indicator -->
+      <div class="rev-dots" id="revDots"></div>
+
+    </div>
+  </section>
+
+  <!-- ── CONTACT / FOOTER ── -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-brand">
+          <div class="footer-logo">
+            <img src="logo/caramello logo.png" alt="Caramello Bakery" class="logo-img" />
+          </div>
+          <p class="contact-tagline">Sweetness in Every Bite</p>
+          <p class="contact-desc">Crafting happiness, one slice at a time. Visit us or place your custom order today.</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/caramello_cakestry" target="_blank" rel="noopener" class="social-btn social-ig" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            </a>
+            <a href="https://www.facebook.com/caramellocakestry" target="_blank" rel="noopener" class="social-btn social-fb" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://wa.me/918089798979" target="_blank" rel="noopener" class="social-btn social-wa" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.789.474 3.469 1.303 4.922L2 22l5.233-1.278A9.955 9.955 0 0011.999 22C17.522 22 22 17.523 22 12S17.522 2 11.999 2zm0 18a7.951 7.951 0 01-4.271-1.244l-.306-.182-3.107.759.784-2.995-.2-.315A7.958 7.958 0 014 12c0-4.411 3.589-8 7.999-8C16.41 4 20 7.589 20 12s-3.589 8-8.001 8z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="contact-info">
+          <h3>Visit Us</h3>
+          <div class="info-item">
+            <span class="info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+            <div>
+              <strong>Opening Hours</strong>
+              <p>8:30 AM – 12:00 AM (Daily)</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </span>
+            <div>
+              <strong>Midnight Delivery</strong>
+              <p>Midnight Birthday Moment Experience available</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 11.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 .82h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16h.92z"/></svg>
+            </span>
+            <div>
+              <strong>Order &amp; Enquiry</strong>
+              <p>Call or WhatsApp us for custom orders</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-order">
+          <h3>Quick Order</h3>
+          <form class="order-form" id="orderForm" onsubmit="handleOrder(event)">
+            <input type="text" id="customerName" placeholder="Your Name" required />
+            <input type="tel" id="customerPhone" placeholder="Phone Number" required />
+            <select id="cakeCategory">
+              <option value="">Select Category</option>
+              <option>Regular Cakes</option>
+              <option>Truffle Pop</option>
+              <option>Fruit Blast</option>
+              <option>Choco Bite</option>
+              <option>Masterpiece</option>
+              <option>Must Try</option>
+              <option>Kids Choice</option>
+              <option>Custom Design</option>
+            </select>
+            <textarea id="orderNote" placeholder="Special instructions / design ideas…" rows="3"></textarea>
+            <button type="submit" class="btn-primary full-btn">Send Enquiry</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Wave divider -->
+    <div class="footer-wave">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="rgba(0,0,0,0.25)"/>
+      </svg>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Caramello Cakestry™ — All Rights Reserved &nbsp;|&nbsp; Sweetness in Every Bite</p>
+      <p class="footer-website"><a href="http://www.caramellocakes.com" target="_blank">www.caramellocakes.com</a></p>
+    </div>
+  </section>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Scroll To Top Button -->
+  <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
